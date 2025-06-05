@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Transfer Result – TransferCheckers</title>
+
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#007bff"> <link rel="icon" href="assets/favicon.ico" />
+
+  <link rel="stylesheet" href="global.css" />
+  <link rel="stylesheet" href="result-style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1 class="site-title">TransferCheckers</h1>
+      <p class="site-tagline">Result Overview</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <div id="resultCard" class="result-card" aria-live="polite">
+      <div id="resultIcon" class="result-icon">🔄</div>
+      <h2 id="resultTitle" class="result-title">Checking...</h2>
+
+      <ul id="detailsList" class="detail-list">
+        <li><strong>Reference:</strong> <span id="referenceText">—</span></li>
+        <li class="detail-item-amount"><strong>Amount:</strong> <span id="amountText">—</span></li>
+        <li class="detail-item-date"><strong>Date:</strong> <span id="dateText">—</span></li>
+        <li class="detail-item-from"><strong>From:</strong> <span id="fromText">—</span></li>
+        <li class="detail-item-to"><strong>To:</strong> <span id="toText">—</span></li>
+        </ul>
+
+      <a href="index.html" class="back-button">← Check Another</a>
+    </div>
+  </main>
+
+  <script type="module" src="scripts/verify.js"></script>
+</body>
+</html>
+

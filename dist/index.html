@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TransferCheckers – Global Verification</title>
+
+  <link rel="manifest" href="/assets/manifest-Cor97H2P.json">
+  <meta name="theme-color" content="#007bff">
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" /> 
+  <link rel="icon" href="assets/favicon-hightech.ico" />
+  <script type="module" crossorigin src="/assets/index-DfDzwN7j.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-BQjv3YW1.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <img src="/assets/logo-rAqn1V1f.png" alt="TransferCheckers Logo" class="site-logo" />
+      <h1 class="site-title">TransferCheckers</h1>
+      <p class="site-tagline">High-Tech Global Verification System</p>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero container">
+      <h2 class="hero-title">Verify Transfer Integrity Instantly</h2>
+      <p class="hero-subtitle">Enter your unique transfer reference below to check its status across our global network.</p>
+
+      <form id="verifyForm" class="verify-form" novalidate>
+        <input type="text" id="referenceInput" name="reference" placeholder="Enter Reference ID (e.g., TRN123XYZ)" required aria-label="Transfer Reference ID">
+        <div id="errorMessageContainer" class="error-message-display" style="display: none; color: var(--status-danger); margin-top: var(--spacing-xs); margin-bottom: var(--spacing-xs); width:100%; max-width: var(--container-input-max-width); text-align: center;"></div>
+        <button type="submit">Verify Now</button>
+      </form>
+    </section>
+
+    <section class="ad-banner container">
+      <img src="/assets/transfer_banner_slideshow-D0661ZyY.gif" alt="Promotional Banner" class="ad-img">
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; <span id="currentYear"></span> TransferCheckers Advanced Systems. All rights reserved.</p>
+      <p>
+        <a href="#privacy">Privacy Policy</a> | <a href="#terms">Terms of Service</a> | <a href="#contact">Contact Support</a>
+      </p>
+    </div>
+    <script>
+      document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
+  </footer>
+
+  <!-- 🔍 Modal -->
+  <div id="infoModal" class="modal" style="display: none;">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <h2 id="modalTitle"></h2>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <!-- ✅ Professional Loading Overlay -->
+  <div id="loadingOverlay" class="loading-overlay" aria-hidden="true">
+    <div class="loader-container">
+      <div class="loader"></div>
+      <p class="loader-text">🔗 Connecting to SWIFT and blockchain…</p>
+    </div>
+  </div>
+
+</body>
+</html>
+
+

@@ -1,0 +1,96 @@
+/* global.css */
+
+/* Import Design Tokens First */
+@import url('design-tokens.css');
+
+/* Reset (using a common modern reset) */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  line-height: 1.15; /* 1 */
+  -webkit-text-size-adjust: 100%; /* 2 */
+}
+
+body {
+  /* Base Body Styles from design tokens */
+  font-family: var(--font-family-sans-serif);
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  line-height: var(--line-height-base);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Styles for consistent page layout across all pages */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow-x: hidden; /* From original hightech-style */
+  scroll-behavior: smooth; /* From original hightech-style */
+}
+
+/* General Container Styling (basic setup) */
+/* Specific max-widths will be applied by .container in styles.css or result-page-style.css */
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  /* Default horizontal padding, can be overridden */
+  padding-left: var(--spacing-md); 
+  padding-right: var(--spacing-md);
+}
+
+/* Links */
+a {
+  color: var(--accent-primary);
+  text-decoration: none;
+  transition: color var(--transition-duration-short) var(--transition-timing-function-ease);
+}
+
+a:hover, a:focus-visible {
+  color: var(--accent-primary-dark);
+  text-decoration: underline;
+}
+
+/* Headings - Basic Styling */
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: var(--spacing-md);
+  line-height: var(--line-height-heading);
+  font-weight: var(--font-weight-bold);
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+input, button, textarea, select {
+  font: inherit;
+}
+
+/* Global Animation - Spinner */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Unified Spinner Style (using "hightech" larger spinner as standard) */
+.spinner {
+    width: var(--spinner-size-lg);
+    height: var(--spinner-size-lg);
+    border-width: var(--border-width-spinner-lg);
+    border-style: solid;
+    border-color: transparent;
+    border-top-color: var(--accent-primary);
+    border-radius: 50%;
+    animation: spin var(--spinner-animation-duration-lg) var(--transition-timing-function-linear) infinite;
+    box-shadow: var(--shadow-spinner-accent);
+    margin-left: auto; /* For centering if direct child of flex or block */
+    margin-right: auto;
+    line-height: normal; /* From original result page spinner */
+}

@@ -1,0 +1,179 @@
+/* result-style.css - Fully Refactored for Dark Theme and Design Tokens */
+
+/* Note: :root, body, .spinner, and @keyframes spin definitions
+   have been removed as they are now handled by design-tokens.css and global.css */
+
+/* Specific styles for the header on the result page */
+.site-header {
+  background-color: var(--surface-primary); /* Aligns with hightech theme */
+  color: #24e07e !important;
+  padding: var(--spacing-lg) 0; /* Approx 20px -> 24px */
+  box-shadow: var(--shadow-lg); /* Consistent shadow style */
+  border-bottom: var(--border-width-thin) solid var(--border-primary);
+}
+
+.site-header .container {
+  max-width: var(--container-width-md); /* Was 800px */
+  padding-left: var(--spacing-lg); /* Approx 20px -> 24px */
+  padding-right: var(--spacing-lg);
+  /* display: flex, justify-content, align-items are from original, kept for structure */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.site-title { /* Site title on the result page */
+  margin: 0;
+  font-size: var(--font-size-header-title); /* Was 1.8em */
+  font-weight: var(--font-weight-bold);
+  color: #24e07e !important;
+}
+
+.site-tagline { /* Site tagline on the result page */
+  margin: 0;
+  font-size: var(--font-size-base); /* Was 1em */
+  font-weight: var(--font-weight-normal);
+  color: var(--text-secondary);
+  opacity: 0.9; /* Kept from original, can be tokenized if needed */
+}
+
+.main-container { /* Main content area for the result card */
+  flex-grow: 1; /* Keep */
+  display: flex; /* Keep */
+  justify-content: center; /* Keep */
+  align-items: center; /* Keep */
+  padding: var(--spacing-xl) var(--spacing-lg); /* Was 40px 20px -> 32px 24px */
+}
+
+.result-card {
+  background-color: var(--surface-primary); /* Dark theme card background */
+  color: var(--text-primary); /* Ensure text inside is light */
+  border-radius: var(--border-radius-md); /* Was 8px */
+  border: var(--border-width-thin) solid var(--border-primary); /* Subtle border for definition */
+  box-shadow: var(--card-glow-effect); /* High-tech glow */
+  padding: var(--spacing-xl) var(--spacing-xxl); /* Was 30px 40px -> 32px 48px */
+  width: 100%;
+  max-width: var(--container-width-sm); /* Was 600px */
+  text-align: center;
+  opacity: 0; /* Initial state for animation, keep */
+  transform: translateY(20px) scale(0.95); /* Initial state for animation, keep */
+}
+
+.result-icon {
+  font-size: var(--font-size-icon-xl); /* Was 3em */
+  margin-bottom: var(--spacing-lg); /* Was 20px -> 24px */
+  line-height: 1; /* Keep */
+  /* Icon color will be handled by JS adding status classes or if icon is SVG, fill can be set */
+}
+
+.pending-icon { /* Example if you use text/emoji for pending */
+    font-size: var(--font-size-base); /* Was 1em */
+    /* Color will be handled by .value-pending */
+}
+
+.result-title { /* Title inside the result card e.g. "Transfer Verified" */
+  font-size: var(--font-size-lg); /* Was 1.6em */
+  font-weight: var(--font-weight-semibold); /* Was 600 */
+  margin-top: 0;
+  margin-bottom: var(--spacing-lg); /* Was 25px -> 24px */
+  /* Color is handled by JS (e.g., .status-success, .status-failed) */
+}
+
+.detail-list {
+  list-style: none; /* Keep */
+  padding: 0; /* Keep */
+  margin: 0 0 var(--spacing-xl) 0; /* Was 30px -> 32px */
+  text-align: left; /* Keep */
+}
+
+.detail-list li {
+  padding: var(--spacing-sm) 0; /* Was 10px -> 12px */
+  border-bottom: var(--border-width-thin) solid var(--border-primary); /* Was #eee */
+  display: flex; /* Keep */
+  justify-content: space-between; /* Keep */
+  font-size: var(--font-size-sm); /* Was 0.95em */
+}
+.detail-list li:last-child {
+  border-bottom: none; /* Keep */
+}
+
+
+.loading-overlay {
+  position: fixed;
+  top: 0;            /* full‐viewport positioning */
+  left: 0;
+  width: 50vw;      /* ensure it fills edge-to-edge */
+  height: 50vh;
+  background: rgba(0,0,0,0.55); /* your dimming layer */
+  display: flex;     /* enable flex-centering */
+  align-items: center;
+  justify-content: center;
+  z-index: 9800;     /* above everything else */
+  transition: opacity 0.6s ease;
+
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+
+
+.detail-list li strong {
+  color: var(--text-secondary); /* Was #555 */
+  margin-right: var(--spacing-sm); /* Was 10px -> 12px */
+  font-weight: var(--font-weight-semibold); /* Was 600 */
+}
+
+.detail-list li span {
+  color: var(--text-primary); /* Was var(--text-color) from old :root */
+  text-align: right; /* Keep */
+  word-break: break-word; /* Keep */
+}
+
+.currency-code {
+    font-size: var(--font-size-xs); /* Was 0.85em */
+    color: var(--text-muted); /* Was #777 */
+    margin-left: var(--spacing-xxs); /* Was 5px -> 4px */
+}
+
+/* Status color classes (JS applies these or similar for text) */
+.value-danger, .error-reason {
+     color: var(--status-danger) !important; /* Ensure high specificity if needed */
+}
+.value-pending, .pending-info {
+    color: var(--status-warning) !important; /* Ensure high specificity if needed */
+}
+/* Success color is typically applied directly by JS to resultTitle or specific success messages */
+.value-success { /* If you have a generic class for success values */
+    color: var(--status-success) !important;
+}
+
+
+.action-area {
+    margin-top: var(--spacing-xl); /* Was 30px -> 32px */
+}
+
+.back-button {
+  color: #24e07e !important;
+  color: #FFFF !important;
+  padding: var(--spacing-sm) var(--spacing-lg); /* Was 12px 25px -> 12px 24px */
+  text-decoration: none; /* Keep */
+  border-radius: var(--border-radius-sm); /* Was 5px -> 4px */
+  font-weight: var(--font-weight-semibold); /* Was 600 */
+  transition: background-color var(--transition-duration-base) var(--transition-timing-function-ease); /* Was 0.3s ease */
+  font-size: var(--font-size-sm); /* Was 0.9em */
+  border: none; /* Keep */
+  cursor: pointer; /* Keep */
+}
+
+.back-button:hover {
+  background-color: #24e07e !important;
+}
+
+.site-footer { /* Footer on the result page */
+    text-align: center; /* Keep */
+    padding: var(--spacing-lg); /* Was 20px -> 24px */
+    font-size: var(--font-size-xs); /* Was 0.85em */
+    color: var(--text-secondary); /* Was #777 */
+    background-color: var(--surface-primary); /* Was #E9ECEF, now dark theme */
+    border-top: var(--border-width-thin) solid var(--border-primary); /* Added for separation */
+}

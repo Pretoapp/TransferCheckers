@@ -1,0 +1,687 @@
+/*───────────────────────────────────────────────────────────────
+  TransferCheckers — High-Tech Global Verification Styling
+  ELEVATED REFACTOR for Pro-Level UI/UX
+  Design tokens from design-tokens.css are assumed.
+  Focus: Subtlety, enhanced interactivity, and Apple/Google-esque polish.
+───────────────────────────────────────────────────────────────*/
+
+/*
+  Note:
+  - :root, Reset, base body, .spinner, and @keyframes spin are external.
+  - Assumed base font-smoothing (antialiased, grayscale) is in global.css.
+  - Further tokenization of specific values (e.g., site-logo max-width) is recommended.
+*/
+
+/* ============================
+   Core Layout & Container
+   ============================ */
+.container {
+  width: 100%;
+  max-width: var(--container-width-lg); /* Consistent with original */
+  margin-inline: auto; /* Modern logical property */
+  padding: var(--hightech-padding-container-vertical) var(--hightech-padding-container-horizontal);
+}
+
+/* ============================
+   Site Header
+   ============================ */
+.site-header {
+  background: var(--surface-primary);
+  border-bottom: var(--border-width-thin) solid var(--border-primary);
+  text-align: center;
+  padding: var(--hightech-header-padding-vertical) 0;
+  box-shadow: var(--shadow-lg); /* Subtle elevation */
+}
+
+.site-logo {
+  display: block; /* Ensure block behavior for margin auto */
+  max-width: var(--hightech-logo-max-width, 280px); /* Tokenized, with fallback */
+  height: auto;
+  margin: 0 auto var(--hightech-logo-margin-bottom);
+  animation: pulseGlowLogo 2.5s infinite ease-in-out; /* Smoother, subtler animation */
+}
+
+.site-title {
+  font-size: var(--font-size-xxl);
+  color: var(--accent-brand-primary, #24e07e); /* Tokenized, removed !important */
+  text-shadow: var(--hightech-title-text-shadow, 0 0 12px rgba(36, 224, 126, 0.3)); /* Tokenized */
+  font-weight: var(--font-weight-bold); /* Ensuring title has weight */
+}
+
+.site-tagline {
+  font-size: var(--font-size-md);
+  color: var(--text-secondary);
+  margin-top: var(--spacing-xs, 0.5rem); /* Added for spacing from title */
+}
+
+/* ============================
+   Hero Section
+   ============================ */
+.hero {
+  text-align: center;
+  margin-top: var(--hightech-hero-margin-top);
+  padding-bottom: var(--spacing-xl, 3rem); /* Ensure some space before form or next section */
+}
+
+.hero-title {
+  font-size: var(--font-size-xl);
+  margin-bottom: var(--hightech-hero-title-margin-bottom);
+  color: var(--text-primary);
+  font-weight: var(--font-weight-semibold, 600);
+}
+
+.hero-subtitle {
+  color: var(--text-secondary);
+  margin-bottom: var(--hightech-hero-subtitle-margin-bottom);
+  max-width: var(--text-max-width-prose, 65ch); /* Improve readability for longer subtitles */
+  margin-inline: auto; /* Center if max-width applies */
+}
+
+/* ============================
+   Verification Form
+   ============================ */
+.verify-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hightech-form-gap);
+  align-items: center;
+}
+
+.verify-form input[type="text"], /* Be more specific for input types */
+.verify-form input[type="search"] {
+  width: 100%;
+  max-width: var(--container-input-max-width);
+  padding: var(--hightech-form-input-padding-vertical) var(--hightech-form-input-padding-horizontal);
+  border-radius: var(--border-radius-lg);
+  background: var(--surface-glass);
+  border: var(--border-width-thin) solid var(--border-primary);
+  color: var(--text-primary);
+  backdrop-filter: blur(var(--blur-intensity-light, 6px)); /* Tokenized blur */
+  font-size: var(--font-size-base);
+  transition: border-color var(--transition-duration-base) ease,
+              box-shadow var(--transition-duration-base) ease; /* Smooth focus transition */
+}
+
+.verify-form input[type="text"]:focus,
+.verify-form input[type="search"]:focus {
+  border-color: var(--accent-primary);
+  box-shadow: var(--shadow-focus-ring-accent); /* Consistent focus ring */
+  outline: none; /* Remove default outline if custom shadow is used */
+}
+
+.verify-form button {
+  padding: var(--hightech-form-button-padding-vertical) var(--hightech-form-button-padding-horizontal);
+  background-color: var(--accent-brand-primary, #24e07e); /* Tokenized, removed !important */
+  color: var(--text-on-accent, #000); /* Ensure contrast */
+  border: none;
+  border-radius: var(--border-radius-lg);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-base);
+  cursor: pointer;
+  box-shadow: var(--shadow-accent-button);
+  transition: background-color var(--transition-duration-button-transform) ease, /* target property */
+              transform var(--transition-duration-button-transform) ease,
+              box-shadow var(--transition-duration-button-transform) ease;
+  will-change: transform, background-color; /* Performance hint */
+}
+
+.verify-form button:hover,
+.verify-form button:focus-visible {
+  background-color: var(--accent-brand-primary-hover, #1fc870); /* Darker shade on hover */
+  transform: translateY(-2px) scale(1.03); /* More subtle, lift effect */
+  box-shadow: var(--shadow-accent-button-hover); /* Enhanced shadow on hover/focus */
+  outline: var(--border-width-medium) solid var(--accent-primary-transparent, rgba(36, 224, 126, 0.5)); /* Softer outline */
+  outline-offset: var(--hightech-form-button-outline-offset);
+}
+
+.verify-form button:active {
+  transform: translateY(0px) scale(0.98); /* Press down effect */
+  background-color: var(--accent-brand-primary-active, #1aa060); /* Darker shade on active */
+  box-shadow: var(--shadow-inset, inset 0 2px 4px rgba(0,0,0,0.2)); /* Inset shadow for pressed feel */
+}
+
+
+/* ============================
+   Ad Banner
+   ============================ */
+.ad-banner {
+  margin-top: var(--hightech-ad-banner-margin-top);
+  padding: var(--hightech-ad-banner-padding);
+  background: var(--surface-glass);
+  border-radius: var(--border-radius-xl);
+  box-shadow: var(--card-glow-effect);
+  backdrop-filter: blur(var(--blur-intensity-medium, 8px)); /* Tokenized */
+  text-align: center;
+  overflow: hidden; /* Ensure child elements adhere to border-radius */
+}
+
+.ad-img {
+  /* Global img styles should handle width: 100%, max-width: 100%, display: block */
+  border-radius: var(--border-radius-lg); /* Keep if image itself needs rounding inside banner padding */
+  box-shadow: var(--shadow-image-accent);
+}
+
+/* ============================
+   Site Footer
+   ============================ */
+.site-footer {
+  margin-top: var(--hightech-footer-margin-top);
+  padding: var(--hightech-footer-padding-vertical) 0;
+  border-top: var(--border-width-thin) solid var(--border-primary);
+  color: var(--text-secondary);
+  text-align: center;
+  font-size: var(--font-size-sm); /* Typically smaller for footers */
+}
+
+.site-footer a {
+  color: var(--text-tertiary, var(--text-secondary)); /* Can use a more muted link color */
+  text-decoration: none;
+  margin: 0 var(--hightech-footer-link-margin-horizontal);
+  transition: color var(--transition-duration-footer-link-color) ease; /* Specify easing function */
+}
+
+.site-footer a:hover,
+.site-footer a:focus-visible {
+  color: var(--accent-primary);
+  text-decoration: underline; /* Common practice for hover on text links */
+  text-decoration-thickness: var(--border-width-thin);
+  text-underline-offset: 3px;
+}
+
+/* ============================
+   Loading Spinner Overlay
+   ============================ */
+.loading-overlay {
+  position: fixed;
+  inset: 0; /* Shorthand for top, right, bottom, left 0 */
+  background: var(--overlay-background-darker, rgba(0, 0, 0, 0.85)); /* Tokenized */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--z-index-overlay, 9999);
+  opacity: 0; /* Start hidden for transition */
+  visibility: hidden; /* Hide from assistive tech when not visible */
+  transition: opacity 0.5s var(--ease-out-quad), visibility 0s 0.5s; /* Smooth fade, visibility delay */
+  will-change: opacity;
+}
+
+.loading-overlay.is-active { /* Add a class to control visibility */
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0s; /* Override visibility delay when becoming active */
+}
+
+
+/* ============================
+   Modal Styles (Dark Theme - Refined for Size & Polish)
+   ============================ */
+.modal {
+  position: fixed;
+  inset: 0; /* Shorthand */
+  z-index: var(--z-index-modal, 1000);
+  background-color: var(--overlay-background-blur, rgba(10, 20, 30, 0.85)); /* Tokenized, slightly desaturated */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-md); /* Consistent padding */
+  opacity: 0;
+  visibility: hidden; /* Hide from assistive tech */
+  transition: opacity 0.3s var(--ease-out-cubic), visibility 0s 0.3s;
+  backdrop-filter: blur(var(--blur-intensity-strong, 10px)); /* Tokenized, more pronounced */
+  -webkit-backdrop-filter: blur(var(--blur-intensity-strong, 10px));
+  will-change: opacity;
+}
+
+.modal.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0s;
+}
+
+.modal-content {
+  background-color: var(--surface-raised, var(--surface-primary)); /* e.g. slightly lighter than page bg */
+  color: var(--text-primary);
+  padding: var(--spacing-lg) var(--spacing-xl);
+  border: var(--border-width-thin) solid var(--border-modal, var(--border-primary)); /* Specific modal border */
+  width: 100%; /* Responsive width */
+  max-width: var(--modal-max-width, 580px); /* Tokenized */
+  border-radius: var(--border-radius-xl, 16px); /* Slightly larger radius for modern feel */
+  box-shadow: var(--shadow-modal);
+  position: relative; /* For close button positioning */
+  text-align: left;
+  transform: scale(0.92) translateY(10px); /* Initial state for entry animation */
+  opacity: 0; /* Initial hidden state for content animation */
+  transition: opacity 0.35s var(--ease-out-cubic) 0.05s, transform 0.35s var(--ease-out-cubic) 0.05s; /* Animate scale and opacity with slight delay */
+  will-change: transform, opacity;
+  max-height: calc(100vh - (var(--spacing-md) * 2)); /* Ensure modal fits with padding */
+  overflow-y: auto; /* Add scrollbar if content exceeds max-height */
+}
+
+.modal.is-visible .modal-content {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+.close-button {
+  color: var(--text-secondary);
+  position: absolute;
+  top: var(--spacing-md, 20px); /* Consistent spacing */
+  right: var(--spacing-md, 20px);
+  font-size: var(--font-size-icon-lg, 28px); /* Tokenized icon size */
+  font-weight: var(--font-weight-light, 300);
+  line-height: 1; /* Critical for icon buttons */
+  background: transparent;
+  border: none;
+  padding: var(--spacing-xxs, 4px); /* Make it easier to click */
+  border-radius: var(--border-radius-circular, 50%);
+  cursor: pointer;
+  transition: color var(--transition-duration-fast) ease, background-color var(--transition-duration-fast) ease;
+}
+
+.close-button:hover,
+.close-button:focus-visible {
+  color: var(--accent-primary);
+  background-color: var(--surface-interactive-hover, rgba(255,255,255,0.1)); /* Subtle background on hover */
+  outline: none; /* Assuming focus visible is clear enough with color/bg change */
+}
+
+#modalTitle { /* Keep ID selector if JS targets it, otherwise prefer class */
+  margin-block-start: 0; /* Logical property */
+  margin-block-end: var(--spacing-md);
+  color: var(--accent-brand-primary, #24e07e); /* Tokenized, no !important */
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  border-bottom: var(--border-width-thin) solid var(--border-secondary);
+  padding-block-end: var(--spacing-sm); /* Logical property */
+  letter-spacing: -0.02em;
+}
+
+.modal-text-content h3 { /* Assumed part of modal text */
+  color: var(--text-emphasis);
+  font-size: var(--font-size-lg);
+  margin-block-start: 0;
+  margin-block-end: var(--spacing-sm);
+  font-weight: var(--font-weight-semibold);
+}
+
+.modal-text-content h4 {
+  color: var(--text-primary);
+  font-size: var(--font-size-md);
+  margin-block-start: var(--spacing-md);
+  margin-block-end: var(--spacing-xs);
+  font-weight: var(--font-weight-semibold);
+}
+
+.modal-text-content p,
+.modal-text-content li {
+  line-height: var(--line-height-comfortable, var(--line-height-lg)); /* More descriptive token name */
+  color: var(--text-secondary);
+  margin-block-end: var(--spacing-sm); /* Logical property */
+  font-weight: var(--font-weight-regular);
+}
+
+.modal-text-content ul {
+  list-style-type: disc; /* Or 'circle' for a lighter feel */
+  padding-inline-start: var(--spacing-md); /* Logical property */
+  margin-block-end: var(--spacing-sm);
+}
+
+.modal-text-content a {
+  color: var(--accent-primary);
+  text-decoration: none; /* Underline on hover is good */
+  font-weight: var(--font-weight-medium, 500); /* Links often slightly heavier */
+  transition: color var(--transition-duration-base) ease,
+              text-decoration-color var(--transition-duration-base) ease;
+}
+
+.modal-text-content a:hover,
+.modal-text-content a:focus-visible {
+  color: var(--accent-secondary);
+  text-decoration: underline;
+  text-decoration-color: var(--accent-secondary-transparent, rgba(var(--accent-secondary-rgb), 0.5)); /* Subtle underline color */
+  outline: none;
+}
+
+.modal-text-content strong {
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+}
+
+.modal-text-content em { /* Italicized text */
+  color: var(--text-muted); /* Or var(--text-primary) if it needs more emphasis */
+  font-style: italic;
+}
+
+.modal-text-content .last-updated {
+  font-size: var(--font-size-sm);
+  color: var(--text-muted);
+  margin-block-start: var(--spacing-lg); /* Logical property */
+  text-align: right;
+  display: block; /* Ensure it takes full width for text-align */
+}
+
+.modal-text-content .contact-details {
+  background-color: var(--surface-inset, var(--surface-secondary)); /* Slightly different background */
+  padding: var(--spacing-sm);
+  border-radius: var(--border-radius-md);
+  margin-block-end: var(--spacing-md);
+}
+
+.modal-text-content .contact-details p {
+  margin-block-end: var(--spacing-xs);
+}
+
+/* Result Details - Refined for clarity and alignment */
+.result-details {
+  display: grid;
+  grid-template-columns: max-content 1fr; /* Label takes space it needs, value takes rest */
+  gap: var(--spacing-xs, 8px) var(--spacing-md, 16px); /* Row gap, column gap */
+  font-size: var(--font-size-base);
+  color: var(--text-secondary);
+  padding: var(--spacing-sm) 0;
+  align-items: baseline; /* Align baselines of dt and dd */
+}
+
+.result-details dt {
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  text-align: right; /* Maintained as per original */
+  white-space: nowrap;
+  /* Removed padding-top, rely on baseline alignment */
+}
+
+.result-details dd {
+  margin-inline-start: 0; /* Logical property */
+  font-weight: var(--font-weight-regular);
+  color: var(--text-light); /* As per original token */
+  word-break: break-word;
+  /* Removed padding-top, rely on baseline alignment */
+  min-width: 0; /* Fix for potential overflow issues with long words in grid */
+}
+
+/* Status, Amount, TX ID, Address specific styling */
+.status-success { color: var(--status-success); font-weight: var(--font-weight-bold); }
+.status-pending { color: var(--status-warning); font-weight: var(--font-weight-bold); }
+.status-failed  { color: var(--status-danger); font-weight: var(--font-weight-bold); }
+
+.amount {
+  font-weight: var(--font-weight-bold);
+
+  font-size: 1.15em; /* Slightly reduced for balance */
+  letter-spacing: 0.01em;
+}
+
+.tx-id, .address {
+  font-family: var(--font-family-mono);
+  color: var(--text-code);
+  background: var(--surface-code-block);
+  padding: var(--spacing-xxs, 4px) var(--spacing-xs, 8px); /* Tokenized padding */
+  border-radius: var(--border-radius-sm);
+  font-size: 0.9em; /* Relative to parent dd */
+  display: inline-block;
+  line-height: 1.5; /* Improved readability for mono */
+  margin-block-end: var(--spacing-xxs, 4px); /* Consistent spacing */
+  vertical-align: middle; /* Better alignment if mixed with other inline elements */
+}
+
+.result-details dd > span + span { /* If multiple spans (like .tx-id) are direct children */
+  margin-inline-start: var(--spacing-xs, 5px); /* Logical property */
+}
+
+/* Custom scrollbar for modal content (WebKit) */
+.modal-content::-webkit-scrollbar {
+  width: 10px; /* Slightly wider for easier grabbing */
+}
+
+.modal-content::-webkit-scrollbar-track {
+  background: var(--surface-primary); /* Or var(--surface-raised) to match modal content */
+  border-radius: var(--border-radius-lg);
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+  background-color: var(--accent-primary-muted, var(--accent-primary)); /* Use a muted accent or default */
+  border-radius: var(--border-radius-lg);
+  border: 3px solid var(--surface-primary); /* Creates padding effect */
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+  background-color: var(--accent-secondary);
+}
+
+
+/* ============================
+   Animations & Effects
+   ============================ */
+
+/* Keyframes for logo pulseGlow - using filter for better shape conforming glow */
+@keyframes pulseGlowLogo {
+  0%, 100% {
+    filter: drop-shadow(0 0 3px var(--accent-brand-primary-transparent, rgba(36, 224, 126, 0.5)));
+    opacity: 0.9;
+  }
+  50% {
+    filter: drop-shadow(0 0 10px var(--accent-brand-primary-transparent-stronger, rgba(36, 224, 126, 0.7)));
+    opacity: 1;
+  }
+}
+/* Removed the duplicate box-shadow pulseGlow, assuming the filter one is preferred for the logo.
+   If the box-shadow one was for a different element, it should be renamed and applied specifically. */
+
+
+.input-error { /* For form inputs */
+  border-color: var(--status-danger) !important; /* !important can be acceptable for override states */
+  box-shadow: var(--shadow-input-error, 0 0 0 3px var(--status-danger-transparent, rgba(255,0,0,0.3)));
+  animation: shake 0.4s var(--ease-out-quad); /* Slightly longer, better easing */
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-4px); }
+  40%, 80% { transform: translateX(4px); }
+}
+
+
+/* ============================
+   Design Tokens (Ensure these are defined in design-tokens.css or :root)
+   ============================ */
+/*
+:root {
+  // ... existing tokens ...
+
+  // Colors & Accents
+  --accent-brand-primary: #24e07e;
+  --accent-brand-primary-hover: #1fc870; // Example darker shade
+  --accent-brand-primary-active: #1aa060; // Example even darker shade
+  --accent-brand-primary-transparent: rgba(36, 224, 126, 0.5);
+  --accent-brand-primary-transparent-stronger: rgba(36, 224, 126, 0.7);
+  --accent-primary-muted: #52c58f; // For scrollbar or less prominent accents
+  --accent-secondary-transparent: rgba(var(--accent-secondary-rgb), 0.5); // Define --accent-secondary-rgb for this
+  --text-on-accent: #001e0c; // High contrast text for on brand accent background
+  --overlay-background-darker: rgba(0, 10, 5, 0.85); // Example
+  --overlay-background-blur: rgba(10, 20, 30, 0.85); // Example for modal bg
+
+  // Surfaces
+  --surface-raised: #1a2830; // Example for modal content if main bg is darker
+  --surface-inset: rgba(10, 20, 25, 0.5); // Example for contact-details
+  --surface-interactive-hover: rgba(255, 255, 255, 0.08); // For subtle interactive element hover
+
+  // Borders
+  --border-modal: var(--border-primary); // Or a specific color, e.g., rgba(255,255,255,0.1)
+
+  // Shadows (Examples)
+  --shadow-focus-ring-accent: 0 0 0 3px var(--accent-primary-transparent, rgba(36, 224, 126, 0.3));
+  --shadow-accent-button-hover: 0 8px 18px rgba(36, 224, 126, 0.35);
+  --shadow-inset: inset 0 2px 4px rgba(0,0,0,0.2);
+  --shadow-modal: 0 12px 35px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.08);
+
+
+  // Typography
+  --font-weight-light: 300;
+  --font-weight-medium: 500;
+  --font-family-mono: 'SF Mono', 'Consolas', 'Fira Mono', 'Menlo', monospace; // System mono fonts first
+  --line-height-comfortable: 1.7; // Alternative to --line-height-lg for modal text
+
+  // Sizing & Spacing (Examples, ensure values are defined)
+  --hightech-logo-max-width: 280px;
+  --modal-max-width: 580px;
+  --text-max-width-prose: 65ch; // For readability of text blocks
+  --blur-intensity-light: 6px;
+  --blur-intensity-medium: 8px;
+  --blur-intensity-strong: 10px;
+  --spacing-xxs: 0.25rem; // 4px
+  // --spacing-xs, sm, md, lg, xl should already be defined
+
+  // Z-Indices
+  --z-index-modal: 1000;
+  --z-index-overlay: 9999; // Loading overlay above modal
+
+  // Icon Sizes
+  --font-size-icon-lg: 28px; // For close button icon
+}
+*/
+
+/* ============================
+   Responsive Adjustments
+   ============================ */
+@media (max-width: 768px) { /* Tablet and below */
+  .modal-content {
+    /* Consider slightly less padding on tablets if needed */
+    padding: var(--spacing-lg) var(--spacing-lg);
+  }
+}
+
+@media (max-width: 600px) { /* Mobile */
+  .verify-form input[type="text"],
+  .verify-form input[type="search"],
+  .verify-form button {
+    width: 100%; /* Already set, but confirms full width behavior */
+  }
+
+  .loading-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.75);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+  font-size: 1.2rem;
+  font-family: monospace;
+  transition: opacity 0.4s ease;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #0f0;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin-bottom: 12px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading-overlay {
+  /* ... your existing base styles ... */
+  opacity: 0;
+  visibility: hidden; /* Use visibility for accessibility and to prevent interaction */
+  transition: opacity 0.4s ease, visibility 0s linear 0.4s; /* Delay visibility change */
+  /* display: none; by default, will be changed to flex by JS */
+}
+
+.loading-overlay.is-active {
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0s; /* Override delay for visibility when active */
+  /* display: flex; is set by JS */
+}
+
+/* If your modal uses a different class for visibility, ensure that's correct */
+.modal.is-visible { /* Or whatever class your modal uses for active state */
+  opacity: 1;
+  /* ... other active modal styles ... */
+}
+
+  .modal-content {
+    padding: var(--spacing-md) var(--spacing-md); /* Reduced padding */
+    max-width: calc(100% - var(--spacing-md)); /* Full width minus small margin */
+    border-radius: var(--border-radius-lg); /* Slightly smaller radius for small screens */
+    max-height: calc(100vh - (var(--spacing-sm) * 2));
+  }
+
+  #modalTitle {
+    font-size: var(--font-size-lg); /* Slightly smaller title on mobile */
+  }
+
+  .modal-text-content h3 {
+    font-size: var(--font-size-md-lg); /* Custom token for slightly smaller h3 */
+  }
+
+  .result-details {
+    grid-template-columns: 1fr; /* Stack elements */
+    gap: var(--spacing-xxs) 0; /* Reduce gap, no column gap needed */
+  }
+
+  .loading-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  display: none;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: #00ffcc;
+  font-family: 'Courier New', monospace;
+  font-size: 1.2rem;
+  transition: opacity 0.4s ease;
+}
+
+.loader-container {
+  text-align: center;
+}
+
+.loader {
+  width: 48px;
+  height: 48px;
+  border: 4px solid #00ffcc;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin-bottom: 16px;
+}
+
+.loader-text {
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  animation: pulseText 1.2s infinite ease-in-out;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulseText {
+  0%, 100% { opacity: 0.7; }
+  50%      { opacity: 1;   }
+}
+
+
+  .result-details dt {
+    text-align: left;
+    font-weight: var(--font-weight-medium); /* Slightly less prominent label */
+    color: var(--text-secondary); /* Mute label color more */
+    margin-bottom: var(--spacing-xxs); /* Space between stacked dt and dd */
+  }
+  .result-details dd {
+      /* Optional: slightly more prominent value when stacked */
+      /* color: var(--text-primary); */
+  }
+}
+
+
